@@ -28,6 +28,7 @@ export default function IndexPage() {
   const [profiles, setProfiles] = useState<InstagramProfile[]>(mockProfiles);
   const [activeUsername, setActiveUsername] = useState<string>("tech_gustavo");
   const [activeTab, setActiveTab] = useState<"overview" | "posts" | "simulator" | "compare">("overview");
+  const [showDisclaimer, setShowDisclaimer] = useState(true);
 
   // Form state for adding profile
   const [isAddingProfile, setIsAddingProfile] = useState(false);
@@ -141,6 +142,35 @@ export default function IndexPage() {
     <DefaultLayout>
       <div className="flex flex-col gap-6 pb-16 text-foreground max-w-6xl mx-auto">
         
+        {/* YELLOWHOOD DISCLAIMER BANNER */}
+        {showDisclaimer && (
+          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-amber-500/10 to-yellow-600/5 border border-yellow-500/20 p-4 shadow-lg backdrop-blur-md flex items-center justify-between gap-4">
+            <div className="flex items-center gap-3">
+              <div className="p-2 rounded-xl bg-yellow-500/20 border border-yellow-500/30 text-yellow-500 flex-shrink-0 animate-pulse">
+                <Sparkles className="w-5 h-5" />
+              </div>
+              <div className="pr-4">
+                <h3 className="font-bold text-sm text-yellow-500 tracking-wide uppercase">Demonstração Yellowhood</h3>
+                <p className="text-xs text-zinc-300 mt-0.5 font-normal">
+                  Este painel de engajamento do Instagram é uma demonstração interativa de alta fidelidade desenvolvida pela <strong>Yellowhood</strong>. Todos os dados exibidos são simulados para fins de apresentação e validação de interface.
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="hidden md:block px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/20 text-[10px] font-bold text-yellow-500 uppercase tracking-widest whitespace-nowrap">
+                Demo Mode
+              </div>
+              <button
+                onClick={() => setShowDisclaimer(false)}
+                className="p-1.5 rounded-lg hover:bg-white/5 text-zinc-400 hover:text-white transition-colors cursor-pointer"
+                aria-label="Fechar aviso"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* STORIES STYLE PROFILE BAR */}
         <div className="relative w-full rounded-2xl bg-zinc-950/40 border border-zinc-900 p-4 shadow-xl backdrop-blur-xl">
           <div className="flex items-center justify-between mb-3 px-1">
